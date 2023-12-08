@@ -1,0 +1,13 @@
+# Ignore the code itself
+repo
+
+# Temp file libre office
+.~*
+
+# MacOs
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+*.DS_Store
+._*

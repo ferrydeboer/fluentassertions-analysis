@@ -1,0 +1,13 @@
+2446;OPEN;Types that contain an empty ArraySegment<>s cannot be checked with IsEquivalentTo.;bug, triage;2023-11-08T19:12:07Z
+2291;OPEN;Combine Configuration, Services and AssertionOptions;breaking change;2023-09-17T13:48:40Z
+2253;OPEN;Revisit AssertionScope and how it travels over chained calls;breaking change, api-suggestion;2023-09-11T17:49:00Z
+2252;OPEN;Drop RespectingRuntimeTypes and RespectingDeclaredTypes;breaking change, api-suggestion;2023-09-23T14:00:46Z
+2205;OPEN;Assertions on System.Text.Json;feature, triage;2023-08-27T15:44:20Z
+2064;OPEN;Collection: `Should().AllBeEquivalentTo()` does not ignore case;enhancement, api-suggestion;2023-11-23T07:54:42Z
+2002;OPEN;Move DataSet/DataTable/DataRow assertions to separate library;breaking change;2023-11-10T18:56:24Z
+1978;OPEN;Suggestion: move fluent DateTime extensions to separate package;enhancement;2022-08-28T19:23:41Z
+1811;OPEN;Feature: Extend httpResponseMessage.Should().HaveStatusCode() to dump request body on failure;enhancement, future;2023-03-02T16:51:12Z
+1677;OPEN;Assorted v7 improvements;;2023-09-17T19:37:52Z
+1672;OPEN;Consider converting NotBeNull() return type to non-nullable assertions;future;2021-11-28T15:09:02Z
+1502;OPEN;Misleading caller identity when `Which` fails;bug, breaking change;2023-11-18T08:50:16Z
+798;OPEN;Add an option to BeEquivalentTo that compares types of objects recursively.;enhancement;2023-05-29T13:03:57Z

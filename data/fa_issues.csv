@@ -1,0 +1,90 @@
+2496;OPEN;Add string-options for ignoring newline differences;api-suggestion;2023-12-04T10:08:02Z
+2492;OPEN;[API Proposal]: Asserting the execution result of async methods.;api-suggestion;2023-12-02T12:33:12Z
+2490;OPEN;IEnumerable gets evaluated multiple times when using BeEmpty();bug, up-for-grabs;2023-11-30T06:45:48Z
+2481;OPEN;Subject identification not working on remote desktop;bug, triage;2023-12-05T18:10:14Z
+2480;OPEN;BeEquivalent failed with nullably struct property and EqualityComparer;bug, triage;2023-11-30T08:02:03Z
+2479;OPEN;[API Proposal]: Support for selecting multiple properties in single expression.;enhancement, up-for-grabs, api-suggestion;2023-11-30T08:22:09Z
+2478;OPEN;[API Proposal]: Scoped value formatters;api-suggestion;2023-11-30T06:30:10Z
+2472;OPEN;Correctly specify nullability of Subject for `NumericAssertions`;;2023-11-19T18:17:42Z
+2465;OPEN;Support .NET 8;feature, api-suggestion;2023-11-19T16:06:19Z
+2450;OPEN;Fix Qodana issues;;2023-11-19T20:46:56Z
+2446;OPEN;Types that contain an empty ArraySegment<>s cannot be checked with IsEquivalentTo.;bug, triage;2023-11-08T19:12:07Z
+2444;OPEN;ThrowWithinAsync does not work with TaskCanceledException;bug;2023-11-08T11:15:01Z
+2434;OPEN;Add NotBeIn in DateTimeAssertions;api-approved;2023-11-03T14:00:12Z
+2374;OPEN;BeEquivalentTo incorrectly compare JsonElements?;feature;2023-10-26T09:15:27Z
+2364;OPEN;New string-specific options for string equivalency assertions;api-suggestion;2023-12-04T10:07:18Z
+2363;OPEN;BeProperSubsetOf and BeProperSupersetOf;api-approved;2023-11-02T17:45:37Z
+2339;OPEN;Allow IEqualityComparer in string equality assertion;api-suggestion;2023-10-04T13:50:15Z
+2291;OPEN;Combine Configuration, Services and AssertionOptions;breaking change;2023-09-17T13:48:40Z
+2253;OPEN;Revisit AssertionScope and how it travels over chained calls;breaking change, api-suggestion;2023-09-11T17:49:00Z
+2252;OPEN;Drop RespectingRuntimeTypes and RespectingDeclaredTypes;breaking change, api-suggestion;2023-09-23T14:00:46Z
+2234;OPEN;Convert DateTime instance to DateOnly or TimeOnly;api-suggestion;2023-09-20T12:34:27Z
+2224;OPEN;Allow changing context for subsequent assertions;api-suggestion;2023-07-29T13:14:39Z
+2215;OPEN;Add Xunit Migration tips;documentation, up-for-grabs;2023-10-14T17:59:20Z
+2208;OPEN;Add ability to have full CallerIdentity in CustomAssertions while also replacing the Subject;feature, triage;2023-07-29T13:14:17Z
+2205;OPEN;Assertions on System.Text.Json;feature, triage;2023-08-27T15:44:20Z
+2064;OPEN;Collection: `Should().AllBeEquivalentTo()` does not ignore case;enhancement, api-suggestion;2023-11-23T07:54:42Z
+2019;OPEN;`BeUpperCased()` and `BeLowerCased()` semantics are confusing;breaking change, api-suggestion;2023-10-31T08:42:22Z
+2002;OPEN;Move DataSet/DataTable/DataRow assertions to separate library;breaking change;2023-11-10T18:56:24Z
+2000;OPEN;Enumerable is not reused for assertion check and message;enhancement;2022-09-22T19:48:31Z
+1978;OPEN;Suggestion: move fluent DateTime extensions to separate package;enhancement;2022-08-28T19:23:41Z
+1959;OPEN;Add a extension .Subject() on Task<AndWhichConstraint<...>> to return Task<TMatchedElement>;api-suggestion;2022-07-23T19:57:45Z
+1948;OPEN;Exceptions in event accessors fail tests when using .Monitor();enhancement, up-for-grabs;2022-07-10T15:39:16Z
+1938;OPEN;BeEquivalentTo needs option like BeNullOrEmpty [Enhancement];enhancement, api-suggestion;2022-12-27T21:22:01Z
+1854;OPEN;`Should().BeEquivalentTo()` show different error message between Debug and Release;bug;2023-10-07T14:35:58Z
+1823;OPEN;Improve code coverage;up-for-grabs, good first issue;2022-04-27T06:33:39Z
+1811;OPEN;Feature: Extend httpResponseMessage.Should().HaveStatusCode() to dump request body on failure;enhancement, future;2023-03-02T16:51:12Z
+1751;OPEN;Feature Request: Add support for recursive checking of inner exception;enhancement, api-suggestion;2022-05-16T13:28:31Z
+1726;OPEN;Print collections of long strings over multiple lines;enhancement;2023-08-27T22:06:30Z
+1721;OPEN;Some parent equivalency options are not included in failure message;enhancement;2022-04-25T19:27:29Z
+1716;OPEN;[Feature Request] Specify string comparison for `string.Contain()` and friends;;2021-10-25T05:56:09Z
+1707;OPEN;`INode` does not contain object reference to Expectation;;2021-10-16T19:43:14Z
+1701;OPEN;`BeEquivalentTo` does not support `Memory<T>`;enhancement, api-suggestion;2022-04-12T05:14:54Z
+1686;OPEN;WithArgs behavior change and array equality missing;;2021-09-21T05:41:32Z
+1677;OPEN;Assorted v7 improvements;;2023-09-17T19:37:52Z
+1672;OPEN;Consider converting NotBeNull() return type to non-nullable assertions;future;2021-11-28T15:09:02Z
+1651;OPEN;`Should().ContainKey(key).WhoseValue` loses key information in error message;enhancement;2021-09-19T16:54:01Z
+1601;OPEN;PowerAssert / Expression style assertions;enhancement;2021-06-08T05:30:05Z
+1527;OPEN;Several issues with IValueFormatter;enhancement, documentation, up-for-grabs;2021-04-19T14:15:39Z
+1502;OPEN;Misleading caller identity when `Which` fails;bug, breaking change;2023-11-18T08:50:16Z
+1488;OPEN;Assertions on async methods can create inconsistent error message;enhancement;2022-08-09T18:49:23Z
+1486;OPEN;BeEquivalentTo is sensitive to input ordering;;2022-09-07T18:40:32Z
+1455;OPEN;Improve "BeEquivalentTo" output for simple result sets;enhancement, up-for-grabs;2022-03-01T08:57:35Z
+1429;OPEN;Monitored event with a return type throws InvalidProgramException after invocation;;2020-11-11T08:59:44Z
+1398;OPEN;Event Monitor does not detect events on base-class typed derived instances;;2022-04-18T17:38:28Z
+1380;OPEN;How to count the number of assertions inside an AssertionScope?;;2020-09-09T17:39:56Z
+1374;OPEN;ComparingByMembers<object> lets structural equality assertions always succeed;enhancement, up-for-grabs;2020-10-02T15:44:45Z
+1340;OPEN;Capture design guidelines, principles and patterns;documentation;2023-04-13T07:47:52Z
+1304;OPEN;WhenTypesAre;;2020-06-28T11:04:16Z
+1249;OPEN;BeEquivalentTo option ThrowingOnMissingMembers does not work as expected;enhancement;2021-09-26T07:48:15Z
+1247;OPEN;Feature request: make a version from string BeEquivalentTo which ignores \n <> \r\n;feature, api-suggestion;2023-10-04T05:40:36Z
+1240;OPEN;Idea: compare two strings regardless of whitespace;;2020-01-25T19:30:07Z
+1216;OPEN;Create a version of `SatisfyRespectively` that ignores order;api-suggestion;2023-10-28T18:55:29Z
+1213;OPEN;Add support for `IAsyncEnumerable<T>`;feature, api-suggestion;2023-12-07T09:00:30Z
+1161;OPEN;Enable dynamical ordering verification;up-for-grabs, api-suggestion;2023-10-28T18:53:29Z
+1136;OPEN;Dictionary equivalence fails for reference type keys;enhancement, documentation, up-for-grabs;2021-05-02T07:16:48Z
+1115;OPEN;Support c# 8 nullable reference;feature;2023-10-13T07:49:01Z
+1099;OPEN;DateTimeOffset?.Should().BeCloseTo(...);enhancement;2023-09-11T18:16:27Z
+1074;OPEN;Workaround for ReSharper regarding `ShouldNotBeNull()`;enhancement, up-for-grabs;2023-11-01T07:18:35Z
+1068;OPEN;Mutation testing;;2022-08-21T19:53:18Z
+1058;OPEN;Improving Jetbrains.Annotations used;;2019-05-30T15:05:01Z
+1039;OPEN;Missing null checks;enhancement, up-for-grabs;2021-06-03T06:47:28Z
+1036;OPEN;BeEquivalentTo and NotBeEquivalentTo consistency;bug, enhancement;2019-09-17T05:18:59Z
+993;OPEN;FluentAssertions package is not Authenticode signed;enhancement, up-for-grabs;2023-10-31T20:48:08Z
+985;OPEN;collection Should().BeEquivalentTo() vs position of first difference;enhancement, up-for-grabs;2023-10-28T18:48:21Z
+913;OPEN;AssertionScope.FailWith can't be told not to unescape line breaks;enhancement;2023-10-28T18:47:49Z
+902;OPEN;Add support for Span and ReadOnlySpan;feature, future, api-suggestion;2022-09-05T19:06:52Z
+871;OPEN;Error message generation does not work very well for throw cases;enhancement;2020-05-21T08:05:45Z
+868;OPEN;Should().Throw - Original exception doesn't be included in InnerException;requires-clarification;2022-04-16T08:20:19Z
+860;OPEN;Object graph comparison is broken when type implements IEnumerable?;enhancement, up-for-grabs;2021-05-22T08:32:55Z
+814;OPEN;Website Enhancements;documentation;2022-03-20T08:24:45Z
+811;OPEN;`AndConstraint` not running on the same AssertionScope is potentially misleading;enhancement;2020-01-01T17:27:18Z
+798;OPEN;Add an option to BeEquivalentTo that compares types of objects recursively.;enhancement;2023-05-29T13:03:57Z
+699;OPEN;Enable Custom Comparer for IEnumerable<T>.Should().Contain()/NotContain();enhancement;2023-01-21T14:31:40Z
+698;OPEN;Support for DebuggerDisplayAttribute for Formatting Instances in Error Messsages;enhancement, up-for-grabs;2018-03-15T19:13:31Z
+670;OPEN;Failure reason can be hard to find when asserting a collection is ordered using Func;enhancement;2018-01-20T16:35:22Z
+512;OPEN;Confusing CallStack when using Fluent Assertions;enhancement, up-for-grabs;2023-10-28T18:40:50Z
+453;OPEN;JTokenAssertions.BeEquivalentTo should format the JSON document in a more readable fashion;enhancement, up-for-grabs;2016-08-02T18:32:13Z
+423;OPEN;Single-line fluent API for asserting an `event` has been raised;enhancement;2022-03-20T08:06:00Z
+393;OPEN;ShouldRaisePropertyChangedFor followed by Count behaves unexpectedly (solution here);enhancement, up-for-grabs;2023-10-28T18:36:01Z
+378;OPEN;BeEquivalentTo is unhelpful when comparing collections with differencing lengths;enhancement;2022-03-20T08:04:05Z
