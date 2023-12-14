@@ -105,3 +105,48 @@ so it makes sense to identify this as a refactoring target.
 These are two classes named Node where one (`FluentAssertions.Xml.Equivalency.Node`) is internal and essentially an
 `XmlNode`. Simply rename would resolve this.
 
+# Mutual namespace dependencies
+
+Before doing a further analysis of this rule let's reason a bit about it's usability. The rule says low level namespaces
+should not depend on high level namespaces. I was initially suspecting that such implies that FluentAssertions is
+considered the lowest level namespace and FluentAssertions.Primitive is then a higher level namespace. However it is
+calculated in a different way, lowest level namespaces are those of a pair that have highest Afferent Coupling within a
+mutually dependent pair. This is sometimes also referred to as Fan In coupling. So if there's a pair such as named above
+with given coupling cardinality `FluentAssertions 2 <-> 10 FluentAssertions.Primitives` then the Primitives namespace
+would be considered the low level namespace.
+
+Although it being a critical rule, far from all issues returned have a high severity, only 18 out of 223 issues have a
+higher severity and should thus have a higher ROI for fixing.
+
+## The nature of the Fluent API
+
+The Fluent API is essentially enable by extension methods on types named `Should()`. Now all these extension methods
+reside in `AssertionExtension` classes in the root namespace and call into the sub namespaces. These are simple static
+methods that instantiate type specific `Assertions` classes that enable the further fluency of the API. Although it's
+fairly easy to move each set of `Should` methods into the namespaces of the Assertions they instantiate. It breaks all
+`using` statements of the millions of consumers.
+
+The same applies for many other static extension method classes that are glue between types & assertions. Splitting
+up these static interfaces would hurt discoverability of the Fluent API. Moving complete type could help reducing some
+of the mutuality.
+
+## Compile time 'service' collections 
+
+Part of the mutual dependencies is caused by compile time binding of interface implementations. Specifically the 
+EquivalencySteps & the Formatters. In many scenario's this is done runtime using IoC containers and assembly scanning.
+Here the `Formatter` and `EquivalencySteps` types are grouped together in a single namespaces. There are just some slight
+deviations where either an implementation is not in the same namespace (`XmlNodeFormatter`) or the container collection 
+is not in the same namespace (`EquivalencyPlan`).
+
+## Non public members
+
+Filtering out all mutual dependencies where either the caller of callee is public two classes remain:
+
+* `Services`
+* `SelfReferenceEquivalencyOptions`
+
+Both of these classes are also in the top 10 of the types to fix. So it's worth researching what can be resolved there.
+
+## Options
+There are two `Options` suffixed classes that are in the top 10 of types to fix query. Given that the Options architecture
+is also under scrutiny and that change has already been classified as breaking fixing the problems identified.
