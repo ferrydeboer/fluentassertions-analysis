@@ -34,7 +34,7 @@ Looking at the longer term issues there are two more dominant categories:
 This is probably not completely strange since other assertions are lower level and simpler. Given that FlentAssertions is already under development for more than 10 years.
 
 ## Change constraints
-This is a pupolar public library with over 300 Million downloads. This implies that most public API changes are breaking. Technical debt fixes that affect this public API should just be considered very carefully. I believe some heuristics can apply here. From essentially a no-go to possible.
+This is a pupolar public library with over 300 Million downloads. This implies that public API changes are breaking. Technical debt fixes that affect this public API should just be considered very carefully. I believe some heuristics can apply here. From essentially a no-go to possible.
 
 * Does it affect discoverability or breaking changes in the calling of the core Fluent API? Then it's as good as a no go. If inevitable, refactor through deprecation.
 * Does it affect extendability? Refactoring through deprecation.

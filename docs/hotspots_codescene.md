@@ -1,13 +1,21 @@
-# CodeScene Hotspots
+# CodeScene Data & Analysis
 
-For a first analysis and also learning CodeScene I'm using the hotspots as a starting point.
+This started off merely as a part of a full assessment document or article. But seeing it grow and opting for higher
+frequency of publication I decided to also write this and other parts of the FluentAssertions assessment as separate
+articles. The scope of this assessment mainly focuses on the non-test code using the Code Health features of CodeScene.
+This within the scode of using the tool to identify refactoring targets for the short term (7.0) and medium term changes
+to Fluent Assertions. This short inventory of the public issues of Fluent Assertions can be found [here](TODO). The
+CodeScene project & data is
+[publicly visible](https://codescene.io/projects/47340/jobs/1886131/results?scope=month#code-health).
 
-## Code Health hotspots
+## Hotspots
 
-So the code health is one of the aspects of calculating refactoring Targets. Hotspots in the codebase and they are based
-on Code Health score. This is an aggregated score based on violations and warnings of certain rules. This is similar to
-what NDepend does, and it goes somewhat deep to discuss all the rules here. The full documentation can be found
-[here](https://codescene.io/docs/guides/technical/code-health.html?highlight=code+health).
+For a first analysis and also learning CodeScene I'm using the Hotspots Code Health as a starting point. A hotspot is
+basically a code element that has seen a high amount of recent changes. The code health with conjunction of the hotspots
+results in Refactoring Targets. These are the elements of the code that change a lot and have a lower health score. The
+Code Health is an aggregated score based on violations and warnings of certain rules. For the full details see the
+[documentation](https://codescene.io/docs/guides/technical/code-health.html?highlight=code+health) itself. But this is
+is a summary of the Code Health:
 
 > Code Health is an aggregated metric based on 25+ factors scanned from the source code.
 
@@ -17,13 +25,12 @@ It is composed of:
 - Function level issues
 - Implementation level issues
 
-### Hotspots
+## Code Health Hotspots
 
-I don't understand why the tool doesn't provide a simple export button. But fortunately the dev tools provided the API
-endpoint that outputs what is called `biomarkers.csv` which contains the Hotspot Code Health data.
-
-It's easy to see a pattern here, especially if we leave out the tests. 7 our of 12 files (58%) of the refactoring
-targets are classes that end with `Assertions.cs`. And they take the top 6 of the list.
+The tool doesn't provide a simple export button. But fortunately the dev tools provided the API endpoint that outputs
+what is called `biomarkers.csv` which contains the Hotspot Code Health data. It's easy to see a pattern here, especially
+if we leave out the tests. 7 our of 12 files (58%) of the refactoring targets are classes that end with `Assertions.cs`.
+And they take the top 6 of the list.
 
 _What I don't understand here is the fact that I only get 17 files. I was wondering if that has to do with the last
 month since it also contains file with a code health of 10._
@@ -34,35 +41,83 @@ These are identified using an algorithm that not only takes into account the Cod
 but also other aspects such as change coupling and amount of devs making changes making it a potential coordination
 bottleneck.
 
+![](../data/codescene/codescene_refactoring_targets.png?raw=true)
+
 ### Priority Targets
 
-- [GenericCollectionAssertions.cs](https://codescene.io/projects/47340/jobs/1860887/results/code/hotspots/biomarkers?name=fluentassertions%2FSrc%2FFluentAssertions%2FCollections%2FGenericCollectionAssertions.cs)
+- [Collections/GenericCollectionAssertions.cs](https://codescene.io/projects/47340/jobs/1886131/results/code/hotspots/biomarkers?name=fluentassertions%2FSrc%2FFluentAssertions%2FCollections%2FGenericCollectionAssertions.cs)
   (5)
 - CollectionSpecs.cs (5)
 
 ### Targets
 
-- [GenericDictionaryAssertions.cs](https://codescene.io/projects/47340/jobs/1860887/results/code/hotspots/biomarkers?name=fluentassertions%2FSrc%2FFluentAssertions%2FCollections%2FGenericDictionaryAssertions.cs)
+- [Collections/GenericDictionaryAssertions.cs](https://codescene.io/projects/47340/jobs/1886131/results/code/hotspots/biomarkers?name=fluentassertions%2FSrc%2FFluentAssertions%2FCollections%2FGenericDictionaryAssertions.cs)
   (7)
-- [TypeAssertions.cs](https://codescene.io/projects/47340/jobs/1860887/results/code/hotspots/biomarkers?name=fluentassertions%2FSrc%2FFluentAssertions%2FTypes%2FTypeAssertions.cs)
+- [Types/TypeAssertions.cs](https://codescene.io/projects/47340/jobs/1886131/results/code/hotspots/biomarkers?name=fluentassertions%2FSrc%2FFluentAssertions%2FTypes%2FTypeAssertions.cs)
   (5)
-- [AssertionExtensions.cs](https://codescene.io/projects/47340/jobs/1860887/results/code/hotspots/biomarkers?name=fluentassertions%2FSrc%2FFluentAssertions%2FAssertionExtensions.cs)
+- [AssertionExtensions.cs](https://codescene.io/projects/47340/jobs/1886131/results/code/hotspots/biomarkers?name=fluentassertions%2FSrc%2FFluentAssertions%2FAssertionExtensions.cs)
   (8)
-- [Src/Primitives/StringAssertions.cs](https://codescene.io/projects/47340/jobs/1860887/results/code/hotspots/biomarkers?name=fluentassertions%2FSrc%2FFluentAssertions%2FPrimitives%2FStringAssertions.cs)
+- [Primitives/StringAssertions.cs](https://codescene.io/projects/47340/jobs/1886131/results/code/hotspots/biomarkers?name=fluentassertions%2FSrc%2FFluentAssertions%2FPrimitives%2FStringAssertions.cs)
   (6)
-- [Src/Primitives/DateTimeOffsetAssertions.cs](https://codescene.io/projects/47340/jobs/1860887/results/code/hotspots/biomarkers?name=fluentassertions%2FSrc%2FFluentAssertions%2FPrimitives%2FDateTimeOffsetAssertions.cs)
+- [Primitives/DateTimeOffsetAssertions.cs](https://codescene.io/projects/47340/jobs/1886131/results/code/hotspots/biomarkers?name=fluentassertions%2FSrc%2FFluentAssertions%2FPrimitives%2FDateTimeOffsetAssertions.cs)
   (7)
 
 TypeAssertions is an example that more than just the Code Health score determines (the priority of) a refactoring
 target.
 
+## Change Coupling
+
+Change couping is a algorithm that identifies how often certain file pairs are changed together. This is grouped by
+commit, same developer within time period or same ticket id's. In case of the latter provided those are available in the
+commit messages or a linked issue tracker. Change coupling can show patterns that might go unnoticed otherwise. It could
+surface duplication or otherwise concepts that deserve a dedicated abstraction.
+
+![](../data/codescene/codescene_changecoupling.png?raw=true)
+
+If we filter out the tests we see that most change coupling stays within namespace boundaries. What I'm really missing
+here is to quickly inspect the changes in the commits where this coupling occurred. This makes pattern understanding a
+rather cumbersome process. And I could really find a git log command to search the commits that contain this pair. But
+let's just zoom in on cross boundary couples manually then.
+
+**By Commit**
+
+- `Specialized/ExecutionTimeAssertions.cs` <-> `Primitives/SimpleTimeSpanAssertions.cs`
+- `Numeric/NumericAssertions.cs` <-> `Primitives/BooleanAssertions.cs`
+
+**Across Commits**
+
+- `TypeExtensions.cs` <-> `Types/MethodInfoSelector.cs`
+
+### Pattern(s)
+
+It's very cumbersome to find all the commits that contain the pairs and then look at the changes. But overall picture is
+that the change coupling is related to general improvements in certain idioms regarding input checks language support
+and messaging. In the latter there's some duplication present but with variations so refactoring return on investment is
+rather minimal. Across commits coupling is the same. So there's a lot of noise in this change coupling.
+
+### Crank up the coupling degree
+
+If we crack up the minimum coupling degree to 75% the change coupling is limited to some in module files such as:
+
+- `Formatting/ExpressionValueFormatter.cs` <-> `Formatting/NullValueFormatter.cs`
+- `Equivalency/Selection/AllFieldsSelectionRule.cs` <-> `Equivalency/Selection/AllPropertiesSelectionRule.cs`
+
+There are two patterns emerging here:
+
+- Interface changes.
+- Small duplicates behind these interface implementation. The X-Ray feature is a good tool to browse duplicates.
+
 # Analysis
 
-The pattern in this data is clear, it's mostly `Assertions` classes that are identified as problematic. The name also
-clearly indicated these are a rather fundamental part of the application.
+Further analysis will zooms in only the Code Health. The patterns that emerged from the change coupling samples are
+fairly small, benign and on by now more stable parts of the code that haven't realy changes a lot recently. None of
+these types also really surface in the hotspots. The pattern in the Code Health Hotspot data is quite clear however,
+it's mostly `Assertions` classes that are identified as problematic. The name also clearly indicated these are a rather
+fundamental part of the application.
 
 The overall pattern in most of these classes is that they violate rules regarding _(Potentially) Low Cohesion_, _Deep,
-Nested Complexity_ or _Bumpty Road_. The latter two I would categorize as complexity.
+Nested Complexity_ or _Bumpty Road_. The latter two I would categorize as complexity. Let's look in more detail to the
+violations & warnings.
 
 ## Violations
 
@@ -104,3 +159,43 @@ class. It only lists only duplicatin functions within the class.
 A large part of the api exposes the means to provide reasons with potential formatting parameters. There are strings and
 object arrays. For another part the library is built to assert values of primitives. So it should come as no surprise
 for certain `Assertions` classes.
+
+# Conclusions
+
+What started off as an analysis resulted in a certain necessity to describe CodeScene itself. It was also the first time
+I've been using it myself. So apart from drawing conclusions from it's output in regards to the questions what
+candidates we can identify for refactoring I will spend a few words about the tool itself.
+
+## Refactoring candidates
+
+The `Assertions` parts of the codebase identified as problematic are also the parts which are very resistant to change.
+Because addressing the violations for a large part implies introducing breaking changes to the essence of the library, a
+Fluent API that needs discoverability. I don't see any way out of that apart from redesigning the whole API or adding
+complexity using facades to achieve better modularization. This renders a lot of the hotspots as a fact that can't be
+tampered with. It's mostly the **complexity** dimension where improvements then are still possible. And some debates can
+be had about the intentionality desirability of certain clones. But looking at the short term 7.0 priorities this will
+provide more value on the medium term. For an open source project such improvements are nice for new devs to contribute
+but by no means relevant to any near term changes.
+
+So based on the data provided by CodeScene this is not bad news. The code that is more open to change is of quite good
+quality. This is confirmed by the average Code Health of 9. With some further tweaking & filtering it is probably
+possible surface some less urgent but still valuable improvements.
+
+## CodeScene
+
+It was the first time I've been using CodeScene after I started reading the books of CodeScene's founder, Adam Tornhill.
+In this assessment I have only been playing with the features regarding the Code Health parts of the tool. Purely based
+on the outcomes the debt is relatively well under control. It mostly showed that certain debt can be hard if not
+impossible to reduce due to design API decision combined with a high public consumption of that public API. Leaving that
+aside the remaining debt identified is fairly limited. I'm inclided to say it mostly added value making explicit what
+can't be fixed. For the goals of identifying and fixing debt related to shorter term the value remaning was limited to
+some complexity & duplication. Metrics that are not unique to CodeScene in identifying. And that debt does not directly
+seem to affect the roadmap.
+
+Which does not say it can't provide value on the longer term to maintain quality. There are parts which I have not been
+using either because they're not within the scope of this assessement or due to license limitations which could provide
+value. One thing within the license is the knowledge distribution which could be relevant in assessing possible
+documentation gaps or needed handovers. Another interesting element is the defect tracking which adds another dimension
+onto the hotspots. After all, those hotspots with the largest amount of fixes are most relevant candidates for
+refactoring. I definitely see a lot more value of applying CodeScene in larger scale commercial contexts. Features such
+as the delivery performance look very valuable in improving release frequency.
