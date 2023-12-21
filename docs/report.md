@@ -62,4 +62,11 @@ extension methods but that requires some research and adds no direct benefit to 
 ## Part 2 - How to refactor
 
 The idea was to actually provide possible solutions to higher priority issues. But given I was drowning in the amount of
-information I decided to leave that for a part 2.
+information I decided to leave that for a part 2. Also, actual PR's are probably more valuable than just writing about it.
+
+
+### Part 3 - Tool comparison
+
+- Their Avoid Types with poor cohesion returns no result. This probabably has to do with different calculation and
+  NDepend LCOM looks at fragmentation between use of class variables and not the extent to which functions either rely
+  on each other or the class field.
