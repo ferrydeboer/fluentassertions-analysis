@@ -7,6 +7,7 @@ This repo is a public analysis of the .net [Fluent Assertions](https://github.co
 **Tools used:**  
 * [CodeScene](https://codescene.io/projects/47340/jobs/1860887/results?scope=month#code-health)
 * [NDepend](https://www.ndepend.com/)
+  * [Report](data/ndepend/NDependOut/NDependReport.html)
 
 # Setup
 This analysis aims and assessing quality of a codebase and identify hotspots that have impact on a publicly available roadmap. The aim is to answer the following questions:
@@ -22,3 +23,10 @@ This analysis aims and assessing quality of a codebase and identify hotspots tha
 
 ## Results
 Data from various tools can be found in the `data` folder. Written analysis and a final report/article is places in the `docs` folder.
+
+* Question 1 is answered in the the [change forecast](docs/changes_forecast.md).
+* Question 2 is divided amongst an analysis using [CodeScene](docs/hotspots_codescene.md) and [NDepend](docs/hotspots_ndepend.md)
+* Question 3 is partially answered in both of the analysis but is a much more extensive effort for certain issues identified and possible better addressed using actual PR's.
+* Question 4 is a TODO for a more final overview.
+
+
