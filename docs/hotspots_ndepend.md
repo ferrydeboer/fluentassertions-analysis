@@ -39,19 +39,21 @@ myself but the explanation is simply not clear to me!_
 
 # Data Analysis
 
-NDepend generates an HTML report which is included in this repo [here](../data/ndepend/NDependOut/NDependReport.html).
-This report also contains many of the Query Results so these can be browsed without having the actual tooling itself.
+NDepend generates an HTML report which can be found [here](../data/ndepend/NDependOut/NDependReport.html). This report
+also contains many of the Query Results so these can be browsed without having the actual tooling itself.
 
 ## Types to fix
 
-NDepend has it's `Types to fix` query. The hotspots query selects any class that it considers contains technical debt
-and accrues interest. The types to fixes only shows those types that have a debt value of more than 30 minutes and is
-ordered by the breaking point. The [breaking point](https://www.ndepend.com/docs/technical-debt#BreakingPoint) is: _the
-debt divided by the annual-interest._ So if the cost of fixing it is low while the cost of leaving it is high, the
-breaking point is lower, thus paying off the debt is considered most valuable here.
+NDepend has it's `Types to fix` query, see the
+[results](../data/ndepend/NDependOut/NDependReport.html#QSQuery3873301436). The hotspots query selects any class that it
+considers contains technical debt and accrues interest. The types to fixes only shows those types that have a debt value
+of more than 30 minutes and is ordered by the breaking point. The
+[breaking point](https://www.ndepend.com/docs/technical-debt#BreakingPoint) is: _the debt divided by the
+annual-interest._ So if the cost of fixing it is low while the cost of leaving it is high, the breaking point is lower,
+thus paying off the debt is considered most valuable here.
 
-For readability Let's limit outselfs to the types which have a breaking point of less than a year and add some temporal
-data of the last 18 months to it to see what types have been most frequently changed.
+For readability let's limit the results to the types which have a breaking point of less than a year and add some
+temporal data of the last 18 months to it to see what types have been most frequently changed.
 
 | Types                                                                                     | Breaking Point | Debt     | Annual Interest | 18M ChangeFreq |
 | ----------------------------------------------------------------------------------------- | -------------- | -------- | --------------- | -------------- |
@@ -67,11 +69,11 @@ data of the last 18 months to it to see what types have been most frequently cha
 | FluentAssertions.Equivalency.SelfReferenceEquivalencyOptions <TSelf>+Restriction<TMember> | 313d           | 35min    | 40min           | 1              |
 | FluentAssertions.Equivalency.Tracing.GetTraceMessage                                      | 332d           | 50min    | 54min           | 1              |
 
-The debt on a type level is the aggregate value of the debt & interest of all issues. The breaking point is mostly
-determined by the issues with a higher severity due to those having a higher interest and a low Debt value. Even when
-taking the change frequency into account it just a limited set of recurring rules critical or high severiy rules that is
-violated. Understanding those in determining a prioritization of refactoring is then more valuable. So let's look at
-those in the next two sections
+The debt & interest on a type is the aggregate value of the debt & interest of all issues for that type. The breaking
+point is mostly determined by the issues with a higher severity due to those having a higher interest and a low Debt
+value. Even when taking the change frequency into account it just a limited set of recurring rules critical or high
+severiy rules that is violated. Understanding those in determining a prioritization of refactoring is then more
+valuable. So let's look at those in the next two sections
 
 ## Issue Severity Targets
 
@@ -98,7 +100,8 @@ It is the `AssertionOptions` static type initialization that is intertwined with
 
 As mentioned there is a set of rules that are considered critical. Now these rules can return results with varying
 severity because each returned code element can contain varying levels of `Annual Interest`. There are 5 critial rules
-violated. Let's look at them individually.
+violated, see the results [here](../data/ndepend/NDependOut/NDependReport.html#QGSQuery3682185683). Let's look at them
+individually.
 
 ### [ND1000](https://www.ndepend.com/default-rules/NDepend-Rules-Explorer.html?ruleid=ND1000): Avoid types too big (1)
 
@@ -136,7 +139,7 @@ These are two classes named Node where one (`FluentAssertions.Xml.Equivalency.No
 The effect of mutual dependent namespace is probably best illustrated by the dependency graph shown by NDepend, see the
 image below. Now before doing a further analysis of this rule let's reason a bit about it's definition & application.
 
-[](../data/ndepend/fa_dep_cycles.png)
+![](../data/ndepend/fa_dep_cycles.png)
 
 ## Definition
 
@@ -172,7 +175,7 @@ The Fluent API is essentially enabled by extension methods named `Should()`. All
 reside in the root as well. Hence a cycle that illustrated by the graph below that shows the types and methods involved
 in this cycle between `FluentAssertions` <-> `FluentAssertions.Streams` namespaces.
 
-[](../data/ndepend/fa_root_assertions_cycle.png)
+![](../data/ndepend/fa_root_assertions_cycle.png)
 
 Moving any code to break a cycle implies a breaking change, it will break millions of using statements. The root
 namespace being essentially a mediator for all it's sub namespaces is an understandable and valid pattern. Moving the
@@ -185,13 +188,16 @@ locator returning concrete `Assertions` types. The only simple way here is to ha
 and instantiate the specific `Assertions` they depend on themselves. Any other solution I see would involve not using
 compile time binding. The complexity this adds hardly outweighs a benefit to breaking this cycle.
 
+Although partially fixable I believe it shouldn't be the main priorty when it comes to reducing mutual dependencies.
+
 ## Compile time 'service' collections
 
 Part of the mutual dependencies is caused by compile time binding of interface implementations. Specifically the
 EquivalencySteps & the Formatters. In many scenario's this is done runtime using IoC containers and assembly scanning.
 Here the `Formatter` and `EquivalencySteps` types are grouped together in a single namespaces. There are just some
 slight deviations where either an implementation is not in the same namespace (`XmlNodeFormatter`) or the container
-collection is not in the same namespace (`EquivalencyPlan`).
+collection is not in the same namespace (`EquivalencyPlan`). These are relatively easy to fix altough it amount of
+breaking changes should be assessed.
 
 ## Non public members
 
@@ -204,6 +210,9 @@ Both of these classes are also in the top 10 of the types to fix. So it's worth 
 The other `Options` suffixed classes that is in the top 10 of types to fix query is the `AssertionOptions`. Given that
 the Options architecture is also under scrutiny and that change has already been classified as breaking fixing the
 problems identified.
+
+These are potentially not easiest to fix but given their relation to other parts and issues identified that relate to
+changing the services and configuration it makes sense incorporate a fix to this issue.
 
 # Conclusions
 
